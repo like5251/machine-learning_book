@@ -107,22 +107,90 @@
 主导理论|记忆神经网络、大规模集成、基于知识的推理|通过神经网络来感知、通过规则来决策|最佳组合的元学习
 场景|简单问答系统|简单的感知-推理-行动|基于通过多种学习方式获得的知识或经验采取行动或做出回答
 
+## 机器学习算法
+你应该使用哪种机器学习算法，这很大程度上依赖于可用数据的特征和数量以及你的训练目标。不要使用最复杂的算法，除非其结果值得付出昂贵的开销和资源。这里给出了一些最常见的算法，按使用简单程度排序。
+
+- [机器学习算法集锦：从贝叶斯到深度学习及各自优缺点](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650723438&idx=1&sn=a778051186c0e1fb3cdb4076868fd54a&chksm=871b1010b06c99063ec5599dcecbed5ce3065e7c2f0ab1cc11a8251f2472838302f89cf51d52&scene=21#wechat_redirect)
+- [经验之谈：如何为你的机器学习问题选择合适的算法？](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650723704&idx=1&sn=5e791710b46502661e25ff6f7528003b&chksm=871b1106b06c98107174c81401c1f7017b35939ab20bc83b305ecae8b503690518fd32d75bbd&scene=21#wechat_redirect)
+
+### 1. 决策树（Decision Tree）
+![](/assets/1-8.jpeg)
+
+- 原理：典型的决策树分析使用分层变量或决策结点，在逐步决策过程中将一个样本进行分类。
+
+- 优点：擅长对样本的特征进行评估
+- 场景：基于规则的信用评估、扫码结果预测
+- 扩展阅读：
+    - [《教程 | 从头开始：用Python实现决策树算法》](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650723438&idx=4&sn=cf3902a9933afe08ac3c38452044cddd&chksm=871b1010b06c99062809133f3ad6279bccd64768a761a2aa6495367048069bc13788929b276a&scene=21#wechat_redirect)
+    - [《想了解概率图模型？你要先理解图论的基本定义与形式》](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650725041&idx=1&sn=0c57ba70e2613e6af80c4ab61c996d44&chksm=871b1ecfb06c97d9547e50705d3e74a2b8c41254f0efc2dd88d2e89eec3bfac5da089f28c398&scene=21#wechat_redirect)
+
+### 2. 支持向量机（Support Vector Machine）
+![](/assets/Support Vector Machine.png)
+
+- 原理：基于超平面（hyperplane），支持向量机可以对数据群进行分类。
+- 优点：支持向量机擅长在变量 X 与其它变量之间进行二元分类操作，无论其关系是否是线性的
+- 场景举例：新闻分类、手写识别。
+- 扩展阅读：[《干货 | 详解支持向量机（附学习资源）》](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650722941&idx=2&sn=328ba8aa2657217c1d90304018ba3bc6&chksm=871b1603b06c9f155faf0f1e6d6a62f9d014bcaa85f57abc9f0f9ff0ab0ac608b1749f12c170&scene=21#wechat_redirect)
+
+### 3. 回归（Regression）
+![](/assets/1-9.png)
+
+- 原理：回归可以勾画出因变量与一个或多个因变量之间的状态关系。在这个例子中，将垃圾邮件和非垃圾邮件进行了区分。
+- 优点：回归可用于识别变量之间的连续关系，即便这个关系不是非常明显
+- 场景举例：路面交通流量分析、邮件过滤
+
+### 4. 朴素贝叶斯（Naive Bayes Classification）
+![](/assets/1-11.png)
+
+- 原理：朴素贝叶斯分类器用于计算可能条件的分支概率。每个独立的特征都是「朴素」或条件独立的，因此它们不会影响别的对象。
+- 优点：对于在小数据集上有显著特征的相关对象，朴素贝叶斯方法可对其进行快速分类
+- 场景举例：情感分析、消费者分类
+
+### 5. 隐马尔可夫模型（Hidden Markov model）
+![](/assets/1-10.png)
+
+- 原理：显马尔可夫过程是完全确定性的——一个给定的状态经常会伴随另一个状态。交通信号灯就是一个例子。相反，隐马尔可夫模型通过分析可见数据来计算隐藏状态的发生。随后，借助隐藏状态分析，隐马尔可夫模型可以估计可能的未来观察模式。在本例中，高或低气压的概率（这是隐藏状态）可用于预测晴天、雨天、多云天的概率。
+- 优点：容许数据的变化性，适用于识别（recognition）和预测操作
+- 场景举例：面部表情分析、气象预测
+
+### 6. 随机森林（Random forest）
+![](/assets/random forest.png)
+- 原理：随机森林算法通过使用多个带有随机选取的数据子集的树（tree）改善了决策树的精确性。本例在基因表达层面上考察了大量与乳腺癌复发相关的基因，并计算出复发风险。
+
+- 优点：随机森林方法被证明对大规模数据集和存在大量且有时不相关特征的项（item）来说很有用
+
+- 场景举例：用户流失分析、风险评估
+
+- 扩展阅读：[《教程 | 从头开始：用 Python 实现随机森林算法》](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650722795&idx=3&sn=53a95b9ecc269dc0ec8926253b2d5412&chksm=871b1595b06c9c83d205dcab550d14f2709bbae290219b2ce0ad913a0677dc617f138d1ebb6f&scene=21#wechat_redirect)
+
+### 7. 循环神经网络（Recurrent neural network）
+![](/assets/rnn.png)
+
+- 原理：在任意神经网络中，每个神经元都通过 1 个或多个隐藏层来将很多输入转换成单个输出。循环神经网络（RNN）会将值进一步逐层传递，让逐层学习成为可能。换句话说，RNN 存在某种形式的记忆，允许先前的输出去影响后面的输入。
+- 优点：循环神经网络在存在大量有序信息时具有预测能力
+- 场景举例：图像分类与字幕添加、政治情感分析
+
+### 8. 长短期记忆（Long short-term memory，LSTM）
+![](/assets/lstm.png)
+- 长短期记忆（Long short-term memory，LSTM）与门控循环单元神经网络（gated recurrent unit nerual network）：早期的 RNN 形式是会存在损耗的。尽管这些早期循环神经网络只允许留存少量的早期信息，新近的长短期记忆（LSTM）与门控循环单元（GRU）神经网络都有长期与短期的记忆。换句话说，这些新近的 RNN 拥有更好的控制记忆的能力，允许保留早先的值或是当有必要处理很多系列步骤时重置这些值，这避免了「梯度衰减」或逐层传递的值的最终 degradation。LSTM 与 GRU 网络使得我们可以使用被称为「门（gate）」的记忆模块或结构来控制记忆，这种门可以在合适的时候传递或重置值。
+- 优点：长短期记忆和门控循环单元神经网络具备与其它循环神经网络一样的优点，但因为它们有更好的记忆能力，所以更常被使用
+
+- 场景举例：自然语言处理、翻译
+
+- 扩展阅读：
+    - [《深度 | LSTM 和递归网络基础教程》](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650717709&idx=2&sn=2bff1e56bc75d65e178476ea9a93b2c5&scene=21#wechat_redirect)
+    - [《干货 | 图解 LSTM 神经网络架构及其 11 种变体（附论文）》](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650719562&idx=1&sn=ad6693cdeaa18034ed1c53271f642ef7&chksm=871b0134b06c8822bf89781a81081c161eb82b06d0c20b655bd7b991202d363b6c233ef137ff&scene=21#wechat_redirect)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 9. 卷积神经网络（convolutional neural network）
+![](/assets/cnn.png)
+- 原理：卷积是指来自后续层的权重的融合，可用于标记输出层。
+- 优点：当存在非常大型的数据集、大量特征和复杂的分类任务时，卷积神经网络是非常有用的
+- 场景举例：图像识别、文本转语音、药物发现
+- 扩展阅读：
+    - [《专栏 | 卷积神经网络简介》](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650723520&idx=4&sn=8ee14dd052766ca3e0afa60dcbb65b2d&chksm=871b10beb06c99a81ef547319637a177142d33a40da5a85024fc6a3b623d60d3a7ac22e3efc3&scene=21#wechat_redirect)
+    - [《从入门到精通：卷积神经网络初学者指南》](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650717691&idx=2&sn=3f0b66aa9706aae1a30b01309aa0214c&scene=21#wechat_redirect)
+    - [《解析深度卷积神经网络的 14 种设计模式》](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650720302&idx=1&sn=c88634da158f36db23b9dc7d0dc550ad&chksm=871b0c50b06c854694984e193f289deb51a5efe71f53223dc37feb70509fd957c8af5bb61ab3&scene=21#wechat_redirect)
 
 
 
