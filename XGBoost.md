@@ -8,6 +8,9 @@
 ### 实战参考
 [xgboost官网](http://xgboost.readthedocs.io/en/latest/)的一些常用资源：
 
+#### XGBoost理论
+1. [提升树简介](http://xgboost.readthedocs.io/en/latest/model.html)
+
 #### XGBoost示例
 1. [XGBoost python简单实例](http://xgboost.readthedocs.io/en/latest/get_started/index.html)
 2. [XGBoost更多实例](https://github.com/dmlc/xgboost/tree/master/demo)
