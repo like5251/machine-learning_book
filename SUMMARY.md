@@ -32,5 +32,5 @@
   * [预测](机器学习工作流/预测.md)
 * [工具篇](工具篇.md)
   * [数据处理-pandas](工具篇/数据处理-pandas.md)
-  * [机器学习工具包-scikit-learn](机器学习工具包-scikit-learn.md)
-    * [网格搜索GridSearchCV](网格搜索GridSearchCV.md)
+  * [机器学习工具包-scikit-learn](工具篇/机器学习工具包-scikit-learn.md)
+    * [网格搜索GridSearchCV](工具篇/机器学习工具包-scikit-learn/网格搜索GridSearchCV.md)
