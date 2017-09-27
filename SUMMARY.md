@@ -30,6 +30,7 @@
   * [模型融合](机器学习工作流/模型融合.md)
     * [XGBoost](机器学习工作流/模型融合/XGBoost.md)
       * [python API](机器学习工作流/模型融合/XGBoost/python API.md)
+      * [XGBoost工作流](机器学习工作流/模型融合/XGBoost/XGBoost工作流.md)
       * [XGBoost调参](机器学习工作流/模型融合/XGBoost/XGBoost调参.md)
       * [XGBoost实例](机器学习工作流/模型融合/XGBoost/XGBoost实例.md)
   * [预测](机器学习工作流/预测.md)
