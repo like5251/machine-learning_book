@@ -18,7 +18,7 @@ from xgb.sklearn import XGBClassifier as XGBC
     
 ## 两种数据类型
 ### DMatrix
-`class xgboost.DMatrix(data, label=None, missing=None, weight=None, silent=False, feature_names=None, feature_types=None, nthread=None)`
+- `class xgboost.DMatrix(data, label=None, missing=None, weight=None, silent=False, feature_names=None, feature_types=None, nthread=None)`
 
 一般只用到前四个参数：
 - data：特征空间数据集，`shape = [n_samples, n_features]`。支持ndarray-like数据，如DataFrame、Series或ndarray
@@ -38,7 +38,7 @@ dtrain = xgb.DMatrix(train[featrues], train[target], missing = -999.0, weight=tr
 DMatrix的属性和方法不常使用。
 
 ### Booster
-`class xgboost.Booster(params=None, cache=(), model_file=None`
+- `class xgboost.Booster(params=None, cache=(), model_file=None`
 
 关于params，有三种参数可以设置，详见“XGBoost调参”
 
@@ -54,7 +54,7 @@ DMatrix的属性和方法不常使用。
 
 ## 两个顶级函数
 ### train
-`xgboost.train(params, dtrain, num_boost_round=10, evals=(), obj=None, feval=None, maximize=False, early_stopping_rounds=None, evals_result=None, verbose_eval=True, xgb_model=None, callbacks=None, learning_rates=None)`
+- `xgboost.train(params, dtrain, num_boost_round=10, evals=(), obj=None, feval=None, maximize=False, early_stopping_rounds=None, evals_result=None, verbose_eval=True, xgb_model=None, callbacks=None, learning_rates=None)`
 
 返回一个训练完成的Booster对象。
 
@@ -71,7 +71,7 @@ DMatrix的属性和方法不常使用。
 10. verbose_eval (bool or int)：控制运行信息的打印频率
 
 ### cv
-`xgboost.cv(params, dtrain, num_boost_round=10, nfold=3, stratified=False, folds=None, metrics=(), obj=None, feval=None, maximize=False, early_stopping_rounds=None, fpreproc=None, as_pandas=True, verbose_eval=None, show_stdv=True, seed=0, callbacks=None, shuffle=True)`
+- `xgboost.cv(params, dtrain, num_boost_round=10, nfold=3, stratified=False, folds=None, metrics=(), obj=None, feval=None, maximize=False, early_stopping_rounds=None, fpreproc=None, as_pandas=True, verbose_eval=None, show_stdv=True, seed=0, callbacks=None, shuffle=True)`
 
 返回交叉验证的性能评估历史list(string)。
 
@@ -95,19 +95,47 @@ DMatrix的属性和方法不常使用。
 16. seed (int) – Seed used to generate the folds (passed to numpy.random.seed).
 
 ### sklearn接口
-`class xgboost.XGBRegressor(max_depth=3, learning_rate=0.1, n_estimators=100, silent=True, objective='reg:linear', booster='gbtree', n_jobs=1, nthread=None, gamma=0, min_child_weight=1, max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1, reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5, random_state=0, seed=None, missing=None, **kwargs)`
+- `class xgboost.XGBRegressor(max_depth=3, learning_rate=0.1, n_estimators=100, silent=True, objective='reg:linear', booster='gbtree', n_jobs=1, nthread=None, gamma=0, min_child_weight=1, max_delta_step=0, subsample=1, colsample_bytree=1, colsample_bylevel=1, reg_alpha=0, reg_lambda=1, scale_pos_weight=1, base_score=0.5, random_state=0, seed=None, missing=None, **kwargs)`
 
 返回：sklearn兼容的生model。
 
 参数：三种参数，参见XGBoost调参
 
+#### 常用方法
+- `fit(X, y, sample_weight=None, eval_set=None, eval_metric=None, early_stopping_rounds=None, verbose=True)`
 
+返回：拟合数据集，返回熟model，和sklearn用法同。
 
+参数：
+1. X(array_like)： Feature matrix，DataFrame或者numpy array
+2. y(array_like) – Labels，Series或者numpy array
+3. sample_weight(array_like)：每个样本的权重，Series或者numpy array，同DMatrix种的weight
+4. eval_set (list, optional) – A list of (X, y) pairs to use as a validation set for early-stopping,同train种的evals参数
+5. eval_metric (str, callable, optional) ：同cv中的metrics
+6. early_stopping_rounds (int, optional) ：同train
+7. verbose (bool) ：同train
 
+- `evals_result()`：如果eval_set被传入fit函数，可以通过model.evals_result()获取eval_set列表中所有数据集上的性能评估结果（字典）。
 
-
-
-
+## 其他
+params中的eval_metrics，cv中的metrics、fit中的eval_metrics可参考以下eval_metric的取值。
+1. 【objective】[默认为reg:linear]：可选的学习目标如下：
+    - “reg:linear” –线性回归。
+    - “reg:logistic” –逻辑回归。
+    - “binary:logistic” –二分类的逻辑回归问题，输出为概率。
+    - “binary:logitraw” –二分类的逻辑回归问题，输出的结果为wTx。
+    - “count:poisson” –计数问题的poisson回归，输出结果为poisson分布。在poisson回归中，max_delta_step的缺省值为0.7。(used to safeguard optimization)
+    - “multi:softmax” –让XGBoost采用softmax目标函数处理多分类问题，同时需要设置参数num_class（类别个数）
+    - “multi:softprob” –和softmax一样，但是输出的是ndata * nclass的向量，可以将该向量reshape成ndata行nclass列的矩阵。没行数据表示样本所属于每个类别的概率。
+    - “rank:pairwise” –set XGBoost to do ranking task by minimizing the pairwise loss
+2. 【eval_metric】[默认值根据objective参数调整]：性能指标
+    - rmse – root mean square error
+    - mae – mean absolute error
+    - logloss – negative log-likelihood
+    - error – Binary classification error rate (0.5 threshold)
+    - merror – Multiclass classification error rate
+    - mlogloss – Multiclass logloss
+    - auc: Area under the curve
 
 
 
