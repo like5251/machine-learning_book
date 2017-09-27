@@ -80,10 +80,10 @@ XGBoost
 2. 【max_depth】[默认为6]：每棵树的最大深度，越大学习能力越强也越容易过拟合；
 3. 【min_child_weight】[默认为1]：最小叶节点权重和。
 越大学习能力越若越容易欠拟合。
-4. 【gamma】(默认为0)：节点分裂最小损失函数下降值。越大学习能力越若越容易欠拟合。
-5. 【subsample】[默认1]：构建每棵树时对数据集的行采样比例。值越大学习能力越强，越容易过拟合，一般取值[0.5,1]。
-6. 【colsample_bytree】[默认为1]：构建每棵树时对数据集的列采样比例。值越大每棵树用到的特征越多，越容易过拟合。一般取值[0.5,1]。
-7. 【colsample_bylevel】[默认为1]：树的每一级的每一次分裂，对列数的采样的占比
+4. 【subsample】[默认1]：构建每棵树时对数据集的行采样比例。值越大学习能力越强，越容易过拟合，一般取值[0.5,1]。
+5. 【colsample_bytree】[默认为1]：构建每棵树时对数据集的列采样比例。值越大每棵树用到的特征越多，越容易过拟合。一般取值[0.5,1]。
+6. 【colsample_bylevel】[默认为1]：树的每一级的每一次分裂，对列数的采样的占比
+7. 【gamma】(默认为0)：节点分裂最小损失函数下降值。越大学习能力越若越容易欠拟合。
 8. 【alpha】[默认为0]：L1正则项系数，别名reg_alpha。值越大模型复杂度越小，越不容易过拟合。
 9. 【lambda】[默认为1]：L2正则项系数，别名reg_lambda。值越大模型复杂度越小，越不容易过拟合。
 10. 【max_leaves】[默认为0]：添加的最大叶子树。Only relevant for the ‘lossguide’ grow policy.
@@ -110,7 +110,14 @@ XGBoost
     - auc: Area under the curve
 3. 【seed】[默认为0]：随机数种子，置它可以复现随机数据的结果，也可以用于调整参数
 
+python的XGBoost模块有一个sklearn包，XGBClassifier。这个包中的参数是按sklearn风格命名的。但会改变的函数名是：
 
+1. eta ->learning_rate 
+2. lambda->reg_lambda 
+3. alpha->reg_alpha 
+4. num_boosting_rounds->n_estimators
+
+关于调节迭代次数的参数，在标准XGBoost视线中调用拟合函数时把它作为`num_boost_round`参数传入。在XGBClassifier中通过设置参数中的n_estimators来实现。
 
 
 
