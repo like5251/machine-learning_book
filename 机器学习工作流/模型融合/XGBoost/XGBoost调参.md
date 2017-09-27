@@ -1,3 +1,4 @@
+![](/assets/22.jpg)
 ## xgboost调参
 运行XGBoosth之前，必须设置三种参数：
 1. 基本(General)参数：设置要使用的基本模型
