@@ -1,15 +1,16 @@
 xgboost有两种使用方式：标准方式和sklearn方式。鉴于sklearn提供了更丰富的功能（如网格搜索），并且使用广泛，推荐使用后者（通用-强大）。
-
+[官网参考](http://xgboost.readthedocs.io/en/latest/python/python_intro.html)
 ## sklearn方式
 ```python
-# 导入方式
-from xgboost.sklearn import XGBClassifier as XGBC
+# 包导入方式
+from xgboost.sklearn import XGBClassifier
 import pandas as pd
 ```
 ### 1. 数据准备
 sklearn方式对数据要求比较轻松，只要是array-like类型的就可以。
 
 ```pyton
+# 假设数据已事先完成预处理
 train = pd.read_csv()
 test = pd.read_csv()
 
@@ -35,7 +36,9 @@ xgb1 = XGBClassifier(
         seed=27)
 ```
 
-2.  
+### 3. 参数选择
+#### 3.1 交叉验证
+
 
 
 

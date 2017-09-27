@@ -1,5 +1,5 @@
 # XGBoost Python API
-
+[官方地址](http://xgboost.readthedocs.io/en/latest/python/python_api.html)
 ```python
 import xgboost as xgb
 from xgb.sklearn import XGBClassifier as XGBC
@@ -110,7 +110,7 @@ DMatrix的属性和方法不常使用。
 1. X(array_like)： Feature matrix，DataFrame或者numpy array
 2. y(array_like) – Labels，Series或者numpy array
 3. sample_weight(array_like)：每个样本的权重，Series或者numpy array，同DMatrix种的weight
-4. eval_set (list, optional) – A list of (X, y) pairs to use as a validation set for early-stopping,同train种的evals参数
+4. eval_set (list, optional) – A list of (X, y) pairs to use as a validation set for early-stopping,类似于train中的evals参数，但这里是特征-标签二元组
 5. eval_metric (str, callable, optional) ：同cv中的metrics
 6. early_stopping_rounds (int, optional) ：同train
 7. verbose (bool) ：同train
