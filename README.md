@@ -1,6 +1,4 @@
 # My Awesome Book
 
-latex公式
-
-- 加粗$$\boldsymbol{x}$$
+机器学习相关整理20170901.
 
